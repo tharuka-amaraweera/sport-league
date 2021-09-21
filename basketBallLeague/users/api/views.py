@@ -12,6 +12,7 @@ from rest_framework import filters
 from rest_framework.renderers import JSONRenderer
 import json
 from users.api.datacalculations import Calculate
+from rest_framework.permissions import IsAuthenticated
 
 
 # get all team details
@@ -19,6 +20,7 @@ from users.api.datacalculations import Calculate
 
 class PlayerList(generics.ListAPIView):
     serializer_class = PlayerListSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return Player.objects.all()
