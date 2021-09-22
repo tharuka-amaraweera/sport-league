@@ -1,4 +1,5 @@
 <h1>matific-assignment</h1>
+<h2>Used Python Version : Python 3.8.3</h2>
 <h2>Instructions to run the application</h2>
 <ol>
 <h4><li>Create a virtual environment and install the packages mentioned in the requirements.txt file</li></h4>
