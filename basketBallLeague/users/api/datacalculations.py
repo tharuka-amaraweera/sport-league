@@ -9,7 +9,8 @@ class Calculate():
         # players must be sorted by their average score
         sortedList = sorted(data, key=itemgetter('averagescore'))
         players = []
-        for i in range(nintyPercentile-1, length):
-            players.append(sortedList[i])
+        if length > 0:
+            for i in range(nintyPercentile-1, length):
+                players.append(sortedList[i])
 
         return players

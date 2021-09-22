@@ -27,22 +27,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         fake = Faker()
-        User.objects.create(
+
+        user = User.objects.create_user(
             username="adminuser",
             password="admin1234",
-            email="admin@gmail.com",
-            is_staff=True,
             is_active=True,
+            is_staff=True,
             is_superuser=True
         )
+
         print("Admin user created")
 
         for i in range(16):
 
-            User.objects.create(
+            User.objects.create_user(
                 username=USERNAMES[i],
                 password=PASSWORD[i],
                 email=EMAIL[i],
-                is_active=True
+                is_active=True,
+                is_staff=True,
             )
         print("Coches created")

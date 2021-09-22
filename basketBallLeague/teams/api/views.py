@@ -8,29 +8,26 @@ from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.permissions import IsAuthenticated
 
 
-# get all team details
+# Functionality: get all team details
+# along with the team details result includes list of players with their personal details
+# to access the details user must have logged into the system as an admin user
+
 class TeamList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = TeamListSerializer
 
     def get_queryset(self):
-        return Team.objects.all()
+        if self.request.user.is_superuser:
+            return Team.objects.all()
+        else:
+            raise ValidationError(
+                "Only the respective coach or admin user can view the players details!")
 
 
 # get team detail by id
 class TeamDetail(generics.RetrieveAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamListSerializer
-
-# get all team details in sorted order to reflect who won & competition progress
-
-
-class TeamOrderedList(generics.ListAPIView):
-    queryset = Team.objects.all()
-    serializer_class = TeamListSerializer
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['averagescore']
-
-    def get_queryset(self):
-        return Team.objects.all()

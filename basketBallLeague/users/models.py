@@ -1,8 +1,6 @@
 from django.db import models
 from teams.models import Team
 
-# Create your models here.
-
 
 class Player(models.Model):
     team = models.ForeignKey(
@@ -11,14 +9,6 @@ class Player(models.Model):
     heights = models.IntegerField()
     averagescore = models.DecimalField(max_digits=4, decimal_places=2)
     numberofgamesplayed = models.IntegerField()
-
-    def __str__(self):
-        return self.name
-
-
-class Coach(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    name = models.CharField(max_length=70)
 
     def __str__(self):
         return self.name
