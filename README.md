@@ -1,4 +1,4 @@
-<h1>matific-assignment</h1>
+<h1>Sport-league</h1>
 <h2>Used Python Version : Python 3.8.3</h2>
 <h2>Instructions to run the application</h2>
 <ol>
